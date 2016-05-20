@@ -1,7 +1,7 @@
 {
     "name": "doublepoint/dp-abmer",
     "type": "library",
-    "description": ":Creador de ABM's",
+    "description": "Creador de ABMs genéricos",
     "keywords": [
         "DoublePoint",
         "DPAbmer"
