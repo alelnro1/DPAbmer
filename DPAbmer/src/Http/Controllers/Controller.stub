@@ -1,0 +1,133 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Requests;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}};
+
+class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
+{
+    use SoftDeletes;
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        ${{ABM-PLURAL}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::all();
+        return view('{{ABM-PLURAL}}.listar')->with('{{ABM-PLURAL}}', ${{ABM-PLURAL}});
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('{{ABM-PLURAL}}.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validar{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}($request);
+
+        $archivo = $this->subirArchivo($request);
+
+        ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::create($request->all());
+
+        ${{ABM-SINGULAR}}->archivo = $archivo;
+        ${{ABM-SINGULAR}}->save();
+
+        return redirect('/{{ABM-PLURAL}}/')->with('{{ABM-SINGULAR}}_creado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} con nombre ' . $request->nombre . ' creado');
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::findOrFail($id);
+        return view('{{ABM-PLURAL}}.show')->with('{{ABM-SINGULAR}}', ${{ABM-SINGULAR}});
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::findOrFail($id);
+        return view('{{ABM-PLURAL}}.edit')->with('{{ABM-SINGULAR}}', ${{ABM-SINGULAR}});
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validar{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}($request);
+
+        ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::findOrFail($id);
+
+        $archivo = $this->subirArchivo($request);
+
+        ${{ABM-SINGULAR}}->update($request->all());
+
+        ${{ABM-SINGULAR}}->archivo = $archivo;
+        ${{ABM-SINGULAR}}->save();
+
+        return redirect('/{{ABM-PLURAL}}/' . ${{ABM-SINGULAR}}->id)->with('{{ABM-SINGULAR}}_actualizado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} actualizado');
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::findOrFail($id);
+
+        ${{ABM-SINGULAR}}->delete();
+
+        return redirect('/{{ABM-PLURAL}}/')->with('{{ABM-SINGULAR}}_eliminado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} con nombre ' . ${{ABM-SINGULAR}}->nombre . ' eliminado');
+    }
+
+    private function validar{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}($request)
+    {
+        $this->validate($request, [
+            'nombre'      => 'required|max:100',
+            'descripcion' => 'required|max:500',
+            'archivo'     => 'required|max:1000|mimes:jpg,jpeg,png,gif',
+            'fecha'       => 'required|date',
+            'password'    => 'required|confirmed|min:6',
+            'domicilio'   => 'required',
+            'email'       => 'required|email|max:100',
+            'telefono'    => 'required'
+        ]);
+    }
+
+    {{SUBIR_ARCHIVOS}}
+
+}

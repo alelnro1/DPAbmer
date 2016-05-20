@@ -1,0 +1,14 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class {{ABM-SINGULAR}} extends Model
+{
+    protected $table = '{{ABM-PLURAL}}';
+
+    protected $fillable = [
+        'nombre', 'descripcion', 'archivo', 'estado', 'fecha', 'password', 'domicilio', 'email', 'telefono'
+    ];
+}

@@ -1,0 +1,72 @@
+@extends('layouts.app')
+
+@section('site-name', 'Viendo a {{ABM-SINGULAR}}')
+
+@section('content')
+    <div class="panel-heading">
+        {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} con nombre <b><i>{{ ${{ABM-SINGULAR}}->nombre }}</i></b>
+    </div>
+
+    <div class="panel-body">
+        @if(Session::has('{{ABM-SINGULAR}}_actualizado'))
+            <div class="alert alert-success">
+                {{ Session::get('{{ABM-SINGULAR}}_actualizado') }}
+            </div>
+        @endif
+
+        <table class="table table-striped task-table" style="width: 60%;">
+            <tr>
+                <td><strong>Nombre</strong></td>
+                <td>{{ ${{ABM-SINGULAR}}->nombre }}</td>
+            </tr>
+
+            <tr>
+                <td><strong>Descripcion</strong></td>
+                <td>{{ ${{ABM-SINGULAR}}->descripcion }}</td>
+            </tr>
+
+            <tr>
+                <td><strong>Estado</strong></td>
+                <td>{{ ${{ABM-SINGULAR}}->estado }}</td>
+            </tr>
+
+            <tr>
+                <td><strong>Fecha</strong></td>
+                <td>{{ date('Y/m/d', strtotime(${{ABM-SINGULAR}}->fecha)) }}</td>
+            </tr>
+
+            <tr>
+                <td><strong>Domicilio</strong></td>
+                <td>{{ ${{ABM-SINGULAR}}->domicilio }}</td>
+            </tr>
+
+            <tr>
+                <td><strong>Email</strong></td>
+                <td>{{ ${{ABM-SINGULAR}}->email }}</td>
+            </tr>
+
+            <tr>
+                <td><strong>Telefono</strong></td>
+                <td>{{ ${{ABM-SINGULAR}}->telefono }}</td>
+            </tr>
+
+            <tr>
+                <td><strong>Archivo</strong></td>
+                <td><img src="/{{ ${{ABM-SINGULAR}}->archivo }}" height="250" /></td>
+            </tr>
+
+            <tr>
+                <td><strong>Fecha Creacion</strong></td>
+                <td>{{ ${{ABM-SINGULAR}}->created_at }}</td>
+            </tr>
+        </table>
+
+        <div>
+             <a href="/{{ABM-PLURAL}}/{{ ${{ABM-SINGULAR}}->id }}/edit">Editar</a>
+        </div>
+
+        <div>
+            <a href="#" onclick="window.history.go(-1); return false;">Volver</a>
+        </div>
+    </div>
+@stop
