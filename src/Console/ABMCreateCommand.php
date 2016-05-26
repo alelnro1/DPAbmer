@@ -81,35 +81,35 @@ class ABMCreateCommand extends Command
         }
 
         $this->line(' Creando directorios...');
-        $this->crearDirectorios();
+            $this->crearDirectorios();
         $bar->advance();
 
         $this->info(' Copiando vistas...');
-        $this->copiarVistas();
-        $this->copiarAssets();
+            $this->copiarVistas();
+            $this->copiarAssets();
         $bar->advance();
 
         $this->info(' Copiando el modelo...');
-        $this->copiarModelo();
+            $this->copiarModelo();
         $bar->advance();
 
         $this->info(' Copiando el controlador...');
-        $this->copiarControlador();
+            $this->copiarControlador();
         $bar->advance();
 
         if (strtolower(trim($hay_subida_de_archivos)))
         {
             $this->line(' Agregando subida de archivos...');
-            $this->agregarSubidaArchivos();
+                $this->agregarSubidaArchivos();
             $bar->advance();
         }
 
         $this->info(' Copiando migracion...');
-        $this->copiarMigracion();
+            $this->copiarMigracion();
         $bar->advance();
 
         $this->info(' Instalando rutas...');
-        $this->copiarRutas();
+            $this->copiarRutas();
 
         $bar->finish();
     }
@@ -119,6 +119,7 @@ class ABMCreateCommand extends Command
         if (! is_dir(base_path('resources/views/' . $this->abm_plural))) {
             mkdir(base_path('resources/views/' . $this->abm_plural), 0755, true);
             mkdir(base_path('resources/assets/js/' . $this->abm_plural), 0755, true);
+            mkdir(base_path('public/js/' . $this->abm_plural), 0755, true);
         } else {
             abort('500', 'El directorio ' . $this->abm_plural . ' ya existe');
         }
@@ -141,6 +142,9 @@ class ABMCreateCommand extends Command
         }
     }
 
+    /**
+     * Copiar los js en /assets y /public
+     */
     private function copiarAssets()
     {
         $assets = [
@@ -151,10 +155,12 @@ class ABMCreateCommand extends Command
         ];
 
         foreach ($assets as $key => $value) {
-            $new_path = base_path('resources/assets/js/' . $this->abm_plural . '/' . $value);
+            $new_path_assets = base_path('resources/assets/js/' . $this->abm_plural . '/' . $value);
+            $new_path_public = base_path('public/js/' . $this->abm_plural . '/' . $value);
             $old_path = __DIR__.'/../resources/assets/' . $key;
 
-            $this->replaceAndSave($old_path, ['{{ABM-SINGULAR}}', '{{ABM-PLURAL}}', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}', '{{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}'], [$this->abm_singular, $this->abm_plural, ucfirst($this->abm_singular), ucfirst($this->abm_plural)], $new_path);
+            $this->replaceAndSave($old_path, ['{{ABM-SINGULAR}}', '{{ABM-PLURAL}}', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}', '{{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}'], [$this->abm_singular, $this->abm_plural, ucfirst($this->abm_singular), ucfirst($this->abm_plural)], $new_path_assets);
+            $this->replaceAndSave($old_path, ['{{ABM-SINGULAR}}', '{{ABM-PLURAL}}', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}', '{{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}'], [$this->abm_singular, $this->abm_plural, ucfirst($this->abm_singular), ucfirst($this->abm_plural)], $new_path_public);
         }
     }
 
