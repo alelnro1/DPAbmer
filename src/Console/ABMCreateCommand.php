@@ -86,6 +86,7 @@ class ABMCreateCommand extends Command
 
         $this->info(' Copiando vistas...');
             $this->copiarVistas();
+            $this->copiarAssets();
         $bar->advance();
 
         $this->info(' Copiando el modelo...');
@@ -134,6 +135,23 @@ class ABMCreateCommand extends Command
         foreach ($vistas as $key => $value) {
             $new_path = base_path('resources/views/' . $this->abm_plural . '/' . $value);
             $old_path = __DIR__.'/../resources/views/generic/' . $key;
+
+            $this->replaceAndSave($old_path, ['{{ABM-SINGULAR}}', '{{ABM-PLURAL}}', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}', '{{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}'], [$this->abm_singular, $this->abm_plural, ucfirst($this->abm_singular), ucfirst($this->abm_plural)], $new_path);
+        }
+    }
+
+    private function copiarAssets()
+    {
+        $assets = [
+            'create.stub' => 'create.js',
+            'edit.stub'   => 'edit.js',
+            'delete-link.stub' => 'delete-link.js',
+            'listar.stub'   => 'listar.js'
+        ];
+
+        foreach ($assets as $key => $value) {
+            $new_path = base_path('resources/assets/' . $this->abm_plural . '/' . $value);
+            $old_path = __DIR__.'/../resources/assets/' . $key;
 
             $this->replaceAndSave($old_path, ['{{ABM-SINGULAR}}', '{{ABM-PLURAL}}', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}', '{{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}'], [$this->abm_singular, $this->abm_plural, ucfirst($this->abm_singular), ucfirst($this->abm_plural)], $new_path);
         }

@@ -1,0 +1,19 @@
+$(document).ready(function() {
+    oTable = $('#{{ABM-PLURAL}}').DataTable({
+        columnDefs: [
+            { orderable: false, targets: -1 }
+        ],
+        "language": {
+            "info": "Mostrando _START_ a _END_ de _TOTAL_ {{ABM-PLURAL}} filtrados",
+            "paginate": {
+                "first":      "Primera",
+                "last":       "Ultima",
+                "next":       "Siguiente",
+                "previous":   "Anterior"
+            },
+            "lengthMenu": "Mostrar _MENU_ {{ABM-PLURAL}}",
+            "search": "Buscar:",
+            "infoFiltered": "(de un total de _MAX_ {{ABM-PLURAL}})",
+        }
+    });
+});
