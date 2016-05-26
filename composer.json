@@ -1,7 +1,7 @@
 {
-    "name": "DoublePoint/DPAbmer",
+    "name": "doublepoint/dp-abmer",
     "type": "library",
-    "description": ":Creador de ABM's",
+    "description": "Creador de ABMs genéricos",
     "keywords": [
         "DoublePoint",
         "DPAbmer"
@@ -10,8 +10,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": ":Ale Ponzo",
-            "email": ":aleponzo1@gmail.com",
+            "name": "Alejandro Ponzo",
+            "email": "aleponzo1@gmail.com",
             "role": "Developer"
         }
     ],
