@@ -42,12 +42,14 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
     {
         $this->validar{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}($request);
 
-        $archivo = $this->subirArchivo($request);
-
         ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::create($request->all());
+        
+        if (isset($request->archivo) && count($request->archivo) > 0) {
+            $archivo = $this->subirArchivo($request);
 
-        ${{ABM-SINGULAR}}->archivo = $archivo;
-        ${{ABM-SINGULAR}}->save();
+            ${{ABM-SINGULAR}}->archivo = $archivo;
+            ${{ABM-SINGULAR}}->save();
+        }
 
         return redirect('/{{ABM-PLURAL}}/')->with('{{ABM-SINGULAR}}_creado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} con nombre ' . $request->nombre . ' creado');
     }
@@ -88,13 +90,15 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
         $this->validar{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}($request);
 
         ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::findOrFail($id);
+        
+        ${{ABM-SINGULAR}}->update($request->except(['_method', '_token']));
 
-        $archivo = $this->subirArchivo($request);
-
-        ${{ABM-SINGULAR}}->update($request->all());
-
-        ${{ABM-SINGULAR}}->archivo = $archivo;
-        ${{ABM-SINGULAR}}->save();
+        if (isset($request->archivo) && count($request->archivo) > 0) {
+            $archivo = $this->subirArchivo($request);
+            
+            ${{ABM-SINGULAR}}->archivo = $archivo;
+            ${{ABM-SINGULAR}}->save();
+        }
 
         return redirect('/{{ABM-PLURAL}}/' . ${{ABM-SINGULAR}}->id)->with('{{ABM-SINGULAR}}_actualizado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} actualizado');
     }
