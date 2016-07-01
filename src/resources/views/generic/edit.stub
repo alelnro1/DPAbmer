@@ -171,7 +171,7 @@
 
 @section('javascript')
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/js/bootstrap-datepicker.min.js"></script>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAjTpj9h5ANX5iTQIKxkAhI-zcoPxl8GtY"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/geocomplete/1.7.0/jquery.geocomplete.min.js"></script>
     <script type="text/javascript" src="{{ asset('/js/{{ABM-PLURAL}}/edit.js') }}"></script>
 @stop
