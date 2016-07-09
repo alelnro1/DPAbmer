@@ -26,6 +26,12 @@
                 {{ Session::get('{{ABM-SINGULAR}}_creado') }}
             </div>
         @endif
+        
+        @if(Session::has('{{ABM-SINGULAR}}_actualizado'))
+            <div class="alert alert-success">
+                {{ Session::get('{{ABM-SINGULAR}}_actualizado') }}
+            </div>
+        @endif
 
         @if (count(${{ABM-PLURAL}}) > 0)
             <table class="table table-striped task-table" id="{{ABM-PLURAL}}">
