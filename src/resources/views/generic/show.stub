@@ -8,12 +8,6 @@
     </div>
 
     <div class="panel-body">
-        @if(Session::has('{{ABM-SINGULAR}}_actualizado'))
-            <div class="alert alert-success">
-                {{ Session::get('{{ABM-SINGULAR}}_actualizado') }}
-            </div>
-        @endif
-
         <table class="table table-striped task-table" style="width: 60%;">
             <tr>
                 <td><strong>Nombre</strong></td>
