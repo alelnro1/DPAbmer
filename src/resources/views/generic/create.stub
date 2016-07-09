@@ -30,7 +30,7 @@
 
             <!-- Descripcion -->
             <div class="form-group {{ $errors->has('descripcion') ? ' has-error' : '' }}">
-                <label for="descripcion" class="control-label col-md-4">Descripcion: </label>
+                <label for="descripcion" class="control-label col-md-4">Descripción</label>
 
                 <div class="col-md-6">
                     <textarea name="descripcion" rows="3" class="form-control col-md-6">{{ old('descripcion') }}</textarea>
