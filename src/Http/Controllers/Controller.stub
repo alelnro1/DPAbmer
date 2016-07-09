@@ -100,7 +100,7 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
             ${{ABM-SINGULAR}}->save();
         }
 
-        return redirect('/{{ABM-PLURAL}}/' . ${{ABM-SINGULAR}}->id)->with('{{ABM-SINGULAR}}_actualizado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} actualizado');
+        return redirect('/{{ABM-PLURAL}}')->with('{{ABM-SINGULAR}}_actualizado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} actualizado');
     }
 
     /**
