@@ -4,6 +4,9 @@
 
 @section('styles')
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.1.2/css/rowReorder.dataTables.min.css">
+
 @stop
 
 @section('content')
@@ -34,7 +37,7 @@
         @endif
 
         @if (count(${{ABM-PLURAL}}) > 0)
-            <table class="table table-striped task-table" id="{{ABM-PLURAL}}">
+            <table class="table table-striped task-table display no-wrap" id="{{ABM-PLURAL}}" style="width:100%">
                 <!-- Table Headings -->
                 <thead>
                     <tr>
