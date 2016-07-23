@@ -40,18 +40,52 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
      */
     public function store(Request $request)
     {
-        $this->validar{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}($request);
-
+        // Valido el input
+        $validator = Validator::make($request->all(), [
+            'nombre'      => 'required|max:100',
+            'descripcion' => 'required|max:500',
+            'archivo'     => 'required|max:1000|mimes:jpg,jpeg,png,gif',
+            'fecha'       => 'required|date',
+            'password'    => 'required|confirmed|min:6',
+            'domicilio'   => 'required',
+            'email'       => 'required|email|max:100',
+            'telefono'    => 'required'
+        ]);
+        
+        // Creo el {{ABM-SINGULAR}}
         ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::create($request->all());
         
-        if (isset($request->archivo) && count($request->archivo) > 0) {
-            $archivo = $this->subirArchivo($request);
-
-            ${{ABM-SINGULAR}}->archivo = $archivo;
-            ${{ABM-SINGULAR}}->save();
+        // Si se trató de guardar una foto para el local, validarla y subirla
+        $this->subirYGuardarArchivoSiHay($request, $validator, ${{ABM-SINGULAR}});
+        
+        if ($validator->fails()) {
+            return redirect('{{ABM-PLURAL}}/create')->withErrors($validator)->withInput();
         }
 
         return redirect('/{{ABM-PLURAL}}/')->with('{{ABM-SINGULAR}}_creado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} con nombre ' . $request->nombre . ' creado');
+    }
+    
+    /**
+     * Si hay algun archivo para subir, subirlo y guardar la referencia en la base
+     * @param $request
+     * @param $validator
+     * @param ${{ABM-SINGULAR}}
+     * @return mixed
+     */
+    private function subirYGuardarArchivoSiHay($request, $validator, ${{ABM-SINGULAR}})
+    {
+        if (isset($request->archivo) && count($request->archivo) > 0) {
+            $archivo = $this->subirArchivo($request);
+
+            if ($archivo['url']) {
+                ${{ABM-SINGULAR}}->archivo = $archivo['url'];
+                ${{ABM-SINGULAR}}->save();
+            } else {
+                $validator->errors()->add('archivo', $archivo['err']);
+
+                return $validator;
+            }
+        }
     }
 
     /**
@@ -87,17 +121,29 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validar{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}($request);
+        // Valido el input
+        $validator = Validator::make($request->all(), [
+            'nombre'      => 'required|max:100',
+            'descripcion' => 'required|max:500',
+            'archivo'     => 'required|max:1000|mimes:jpg,jpeg,png,gif',
+            'fecha'       => 'required|date',
+            'password'    => 'required|confirmed|min:6',
+            'domicilio'   => 'required',
+            'email'       => 'required|email|max:100',
+            'telefono'    => 'required'
+        ]);
 
+        // Busco el {{ABM-SINGULAR}}
         ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::findOrFail($id);
         
+        // Actualizo el {{ABM-SINGULAR}}
         ${{ABM-SINGULAR}}->update($request->except(['_method', '_token']));
 
-        if (isset($request->archivo) && count($request->archivo) > 0) {
-            $archivo = $this->subirArchivo($request);
-            
-            ${{ABM-SINGULAR}}->archivo = $archivo;
-            ${{ABM-SINGULAR}}->save();
+        // Si se trató de guardar una foto para el local, validarla y subirla
+        $this->subirYGuardarArchivoSiHay($request, $validator, ${{ABM-SINGULAR}});
+
+        if ($validator->fails()) {
+            return redirect('{{ABM-PLURAL}}/create')->withErrors($validator)->withInput();
         }
 
         return redirect('/{{ABM-PLURAL}}')->with('{{ABM-SINGULAR}}_actualizado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} actualizado');
@@ -116,20 +162,6 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
         ${{ABM-SINGULAR}}->delete();
 
         return redirect('/{{ABM-PLURAL}}/')->with('{{ABM-SINGULAR}}_eliminado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} con nombre ' . ${{ABM-SINGULAR}}->nombre . ' eliminado');
-    }
-
-    private function validar{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}($request)
-    {
-        $this->validate($request, [
-            'nombre'      => 'required|max:100',
-            'descripcion' => 'required|max:500',
-            'archivo'     => 'required|max:1000|mimes:jpg,jpeg,png,gif',
-            'fecha'       => 'required|date',
-            'password'    => 'required|confirmed|min:6',
-            'domicilio'   => 'required',
-            'email'       => 'required|email|max:100',
-            'telefono'    => 'required'
-        ]);
     }
 
     {{SUBIR_ARCHIVOS}}
