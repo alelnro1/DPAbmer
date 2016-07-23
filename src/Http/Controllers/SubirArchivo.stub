@@ -23,5 +23,5 @@
             $error = $request->archivo->getErrorMessage();
         }
 
-        return $url;
+        return array('url' => $url, 'err' => $error);
     }
