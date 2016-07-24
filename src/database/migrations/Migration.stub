@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Support\Facades\Schema;
 
 class Create{{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Table extends Migration
 {
