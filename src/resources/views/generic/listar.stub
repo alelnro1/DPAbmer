@@ -12,7 +12,7 @@
         {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}
 
         <div style="float:right;">
-            <a href="/{{ABM-PLURAL}}/create">Nuevo</a>
+            <a href="/{{ABM-PLURAL}}/create" class="btn btn-block btn-default btn-sm">Nuevo</a>
         </div>
     </div>
     <div class="panel-body">
@@ -35,7 +35,7 @@
         @endif
 
         @if (count(${{ABM-PLURAL}}) > 0)
-            <table class="table table-striped task-table display no-wrap" id="{{ABM-PLURAL}}" style="width:100%">
+            <table class="table table-bordered table-hover" id="{{ABM-PLURAL}}" style="width:100%">
                 <!-- Table Headings -->
                 <thead>
                     <tr>
@@ -44,7 +44,7 @@
                         <th>Estado</th>
                         <th>Fecha</th>
                         <th>Email</th>
-                        <th>Telefono</th>
+                        <th>Teléfono</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -60,9 +60,9 @@
                         <td>{{ ${{ABM-SINGULAR}}->telefono }}</td>
 
                         <td>
-                            <a href="/{{ABM-PLURAL}}/{{ ${{ABM-SINGULAR}}['id'] }}">Ver</a>
-                            |
-                            <a href="/{{ABM-PLURAL}}/{{ ${{ABM-SINGULAR}}['id'] }}"
+                            <a href="/{{ABM-PLURAL}}/{{ ${{ABM-SINGULAR}}['id'] }}" class="btn btn-default btn-sm">Ver</a>
+                            
+                            <a href="/{{ABM-PLURAL}}/{{ ${{ABM-SINGULAR}}['id'] }}" class="btn btn-default btn-sm"
                                data-method="delete"
                                data-token="{{ csrf_token() }}"
                                data-confirm="Esta seguro que desea eliminar a {{ABM-SINGULAR}} con nombre {{ ${{ABM-SINGULAR}}->nombre }}?">
