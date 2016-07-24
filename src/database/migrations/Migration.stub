@@ -12,28 +12,28 @@ class Create{{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Table extends Migration
      * @return void
      */
     public function up()
-{
-    Schema::create('{{ABM-PLURAL}}', function(Blueprint $table) {
-        $table->increments('id');
-        $table->string('nombre');
-        $table->text('descripcion');
-        $table->string('archivo');
-        $table->string('estado');
-        $table->string('password', 60);
-        $table->string('domicilio');
-        $table->string('email');
-        $table->string('telefono');
-        $table->dateTime('fecha');
-        $table->rememberToken(); // Solo usuarios
-        $table->timestamps();
-        $table->softDeletes();
-
-    });
-
-    Schema::table('{{ABM-PLURAL}}', function($table) {
-        //$table->foreign('RELACION_ID')->references('id')->on('OTRA_TABLA');
-    });
-}
+    {
+        Schema::create('{{ABM-PLURAL}}', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('nombre');
+            $table->text('descripcion');
+            $table->string('archivo');
+            $table->string('estado');
+            $table->string('password', 60);
+            $table->string('domicilio');
+            $table->string('email');
+            $table->string('telefono');
+            $table->dateTime('fecha');
+            $table->rememberToken(); // Solo usuarios
+            $table->timestamps();
+            $table->softDeletes();
+    
+        });
+    
+        Schema::table('{{ABM-PLURAL}}', function($table) {
+            //$table->foreign('RELACION_ID')->references('id')->on('OTRA_TABLA');
+        });
+    }
 
     /**
      * Reverse the migrations.
@@ -41,7 +41,11 @@ class Create{{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Table extends Migration
      * @return void
      */
     public function down()
-{
-    Schema::drop('{{ABM-PLURAL}}');
-}
+    {
+        Schema::table('{{ABM-PLURAL}}', function(Blueprint $table) {
+            $table->dropForeign('{{ABM-PLURAL}}_FOREIGN_ID_foreign');
+        });
+        
+        Schema::drop('{{ABM-PLURAL}}');
+    }
 }
