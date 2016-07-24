@@ -15,7 +15,7 @@
             </div>
         @endif
 
-        <table class="table table-striped task-table">
+        <table class="table table-striped task-table" style="margin-bottom: 20px;">
             <tr>
                 <td><strong>Nombre</strong></td>
                 <td>{{ ${{ABM-SINGULAR}}->nombre }}</td>
