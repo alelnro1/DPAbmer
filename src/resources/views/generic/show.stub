@@ -69,7 +69,9 @@
         </div>
 
         <div class="col-xs-6">
-            <a href="{{ url('/{{ABM-PLURAL}}/' . ${{ABM-SINGULAR}}->id . '/edit') }}" class="btn btn-default btn-primary" style="float:right; color: white;">Editar</a>
+            <a href="/locales/{{ $local->id }}/edit" class="btn btn-default btn-primary" style="float:right; color: white;">
+                <i class="fa fa-wrench" aria-hidden="true"></i>&nbsp;Editar
+            </a>
         </div>
     </div>
 @stop
