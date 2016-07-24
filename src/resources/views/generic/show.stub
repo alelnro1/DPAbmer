@@ -8,6 +8,13 @@
     </div>
 
     <div class="panel-body">
+
+        @if(isset(${{ABM-SINGULAR}}->archivo) && ${{ABM-SINGULAR}}->archivo != "")
+            <div class="text-center margin-bottom">
+                <img src="/{{ ${{ABM-SINGULAR}}->archivo }}" height="250" />
+            </div>
+        @endif
+
         <table class="table table-striped task-table" style="width: 60%;">
             <tr>
                 <td><strong>Nombre</strong></td>
@@ -55,12 +62,14 @@
             </tr>
         </table>
 
-        <div>
-             <a href="/{{ABM-PLURAL}}/{{ ${{ABM-SINGULAR}}->id }}/edit">Editar</a>
+        <div class="pull-xs-left col-xs-6">
+            <a href="#" onclick="window.history.go(-1); return false;" class="btn btn-default">
+                <i class="fa fa-fw fa-arrow-left"></i>&nbsp;Volver
+            </a>
         </div>
 
-        <div>
-            <a href="#" onclick="window.history.go(-1); return false;">Volver</a>
+        <div class="col-xs-6">
+            <a href="/{{ABM-PLURAL}}/{{ ${{ABM-SINGULAR}}->id }}/edit" class="btn btn-default btn-primary" style="float:right; color: white;">Editar</a>
         </div>
     </div>
 @stop
