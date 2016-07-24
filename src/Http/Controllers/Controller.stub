@@ -53,7 +53,7 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect('locales/edit')->withErrors($validator)->withInput();
+            return redirect('{{ABM-PLURAL}}/create')->withErrors($validator)->withInput();
         }
         
         // Creo el {{ABM-SINGULAR}}
@@ -138,7 +138,7 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
         ]);
         
         if ($validator->fails()) {
-            return redirect('locales/edit')->withErrors($validator)->withInput();
+            return redirect('{{ABM-PLURAL}}/edit')->withErrors($validator)->withInput();
         }
 
         // Busco el {{ABM-SINGULAR}}
