@@ -69,7 +69,7 @@
         </div>
 
         <div class="col-xs-6">
-            <a href="/{{ABM-PLURAL}}/{{ ${{ABM-SINGULAR}}->id }}/edit" class="btn btn-default btn-primary" style="float:right; color: white;">Editar</a>
+            <a href="{{ url('/{{ABM-PLURAL}}/' . ${{ABM-SINGULAR}}->id . '/edit') }}" class="btn btn-default btn-primary" style="float:right; color: white;">Editar</a>
         </div>
     </div>
 @stop
