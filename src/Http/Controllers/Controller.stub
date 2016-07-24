@@ -52,18 +52,18 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
             'telefono'    => 'required'
         ]);
         
-        if ($validator->fails()) {
+        if ($validator->fails())
             return redirect('{{ABM-PLURAL}}/create')->withErrors($validator)->withInput();
-        }
         
         // Creo el {{ABM-SINGULAR}}
         ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::create($request->all());
         
         // Si se trató de guardar una foto para el local, validarla y subirla
-        $this->subirYGuardarArchivoSiHay($request, $validator, ${{ABM-SINGULAR}});
-        
-        if ($validator->fails()) {
-            return redirect('{{ABM-PLURAL}}/create')->withErrors($validator)->withInput();
+        $validator = $this->subirYGuardarArchivoSiHay($request, $validator, ${{ABM-SINGULAR}});
+
+        if ($validator) {
+            if ($validator->fails())
+                return redirect('{{ABM-PLURAL}}/create')->withErrors($validator)->withInput();
         }
 
         return redirect('/{{ABM-PLURAL}}/')->with('{{ABM-SINGULAR}}_creado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} con nombre ' . $request->nombre . ' creado');
@@ -137,9 +137,8 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
             'telefono'    => 'required'
         ]);
         
-        if ($validator->fails()) {
+        if ($validator->fails()) 
             return redirect('{{ABM-PLURAL}}/' . $id .'/edit')->withErrors($validator)->withInput();
-        }
 
         // Busco el {{ABM-SINGULAR}}
         ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::findOrFail($id);
@@ -147,11 +146,12 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
         // Actualizo el {{ABM-SINGULAR}}
         ${{ABM-SINGULAR}}->update($request->except(['_method', '_token']));
 
-        // Si se trató de guardar una foto para el local, validarla y subirla
-        $this->subirYGuardarArchivoSiHay($request, $validator, ${{ABM-SINGULAR}});
+       // Si se trató de guardar una foto para el local, validarla y subirla
+        $validator = $this->subirYGuardarArchivoSiHay($request, $validator, ${{ABM-SINGULAR}});
 
-        if ($validator->fails()) {
-            return redirect('{{ABM-PLURAL}}/' . $id .'/edit')->withErrors($validator)->withInput();
+        if ($validator) {
+            if ($validator->fails())
+                return redirect('{{ABM-PLURAL}}/create')->withErrors($validator)->withInput();
         }
 
         return redirect('/{{ABM-PLURAL}}')->with('{{ABM-SINGULAR}}_actualizado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} actualizado');
