@@ -6,7 +6,7 @@
     <div class="panel-heading">{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}</div>
 
     <div class="panel-body">
-        <form class="form-horizontal" method="POST" action="/{{ABM-PLURAL}}/{{ ${{ABM-SINGULAR}}->id }}" enctype="multipart/form-data">
+        <form class="form-horizontal" method="POST" action="{{ url('{{ABM-PLURAL}}/' . ${{ABM-SINGULAR}}->id) }}" enctype="multipart/form-data">
             {{ method_field('PATCH') }}
             {!! csrf_field() !!}
 
@@ -57,7 +57,7 @@
 
             <!-- Telefono -->
             <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
-                <label class="col-md-4 control-label">Telefono</label>
+                <label class="col-md-4 control-label">Teléfono</label>
 
                 <div class="col-md-6">
                     <input type="text" class="form-control" name="telefono" value="{{ ${{ABM-SINGULAR}}->telefono }}">
@@ -158,13 +158,16 @@
             <div class="form-group">
                 <div class="col-md-6 col-md-offset-4">
                     <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-btn fa-user"></i>Actualizar
+                        <i class="fa fa-btn fa-save"></i>&nbsp;Actualizar
                     </button>
                 </div>
             </div>
         </form>
-        <div>
-            <a href="#" onclick="window.history.go(-1); return false;">Volver</a>
+        
+        <div class="pull-xs-left col-xs-6">
+            <a href="#" onclick="window.history.go(-1); return false;" class="btn btn-default">
+                <i class="fa fa-fw fa-arrow-left"></i>&nbsp;Volver
+            </a>
         </div>
     </div>
 @stop
