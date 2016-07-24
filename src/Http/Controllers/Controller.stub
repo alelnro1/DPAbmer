@@ -52,6 +52,10 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
             'telefono'    => 'required'
         ]);
         
+        if ($validator->fails()) {
+            return redirect('locales/edit')->withErrors($validator)->withInput();
+        }
+        
         // Creo el {{ABM-SINGULAR}}
         ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::create($request->all());
         
@@ -132,6 +136,10 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
             'email'       => 'required|email|max:100',
             'telefono'    => 'required'
         ]);
+        
+        if ($validator->fails()) {
+            return redirect('locales/edit')->withErrors($validator)->withInput();
+        }
 
         // Busco el {{ABM-SINGULAR}}
         ${{ABM-SINGULAR}} = {{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}}::findOrFail($id);
