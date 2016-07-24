@@ -167,8 +167,10 @@
             </div>
         </form>
 
-        <div>
-            <a href="#" onclick="window.history.go(-1); return false;">Volver</a>
+        <div class="pull-xs-left col-xs-6">
+            <a href="#" onclick="window.history.go(-1); return false;" class="btn btn-default">
+                <i class="fa fa-fw fa-arrow-left"></i>&nbsp;Volver
+            </a>
         </div>
     </div>
 @stop
