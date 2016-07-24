@@ -52,11 +52,6 @@
             </tr>
 
             <tr>
-                <td><strong>Archivo</strong></td>
-                <td><img src="/{{ ${{ABM-SINGULAR}}->archivo }}" height="250" /></td>
-            </tr>
-
-            <tr>
                 <td><strong>Fecha Creacion</strong></td>
                 <td>{{ ${{ABM-SINGULAR}}->created_at }}</td>
             </tr>
