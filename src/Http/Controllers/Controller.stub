@@ -143,7 +143,7 @@ class {{ABM-PLURAL-MAYUSCULA-PRIMERA-LETRA}}Controller extends Controller
         $this->subirYGuardarArchivoSiHay($request, $validator, ${{ABM-SINGULAR}});
 
         if ($validator->fails()) {
-            return redirect('{{ABM-PLURAL}}/create')->withErrors($validator)->withInput();
+            return redirect('{{ABM-PLURAL}}/edit')->withErrors($validator)->withInput();
         }
 
         return redirect('/{{ABM-PLURAL}}')->with('{{ABM-SINGULAR}}_actualizado', '{{ABM-SINGULAR-MAYUSCULA-PRIMERA-LETRA}} actualizado');
