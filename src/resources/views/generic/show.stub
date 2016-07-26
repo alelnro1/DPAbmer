@@ -47,12 +47,12 @@
             </tr>
 
             <tr>
-                <td><strong>Telefono</strong></td>
+                <td><strong>Teléfono</strong></td>
                 <td>{{ ${{ABM-SINGULAR}}->telefono }}</td>
             </tr>
 
             <tr>
-                <td><strong>Fecha Creacion</strong></td>
+                <td><strong>Fecha Creación</strong></td>
                 <td>{{ ${{ABM-SINGULAR}}->created_at }}</td>
             </tr>
         </table>
