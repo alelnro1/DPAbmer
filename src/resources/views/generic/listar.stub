@@ -62,10 +62,12 @@
                         <td>
                             <a href="/{{ABM-PLURAL}}/{{ ${{ABM-SINGULAR}}['id'] }}" class="btn btn-default btn-sm">Ver</a>
                             
+                            <a href="/{{ABM-PLURAL}}/{{ ${{ABM-SINGULAR}}['id'] }}/edit" class="btn btn-default btn-sm">Editar</a>
+                            
                             <a href="/{{ABM-PLURAL}}/{{ ${{ABM-SINGULAR}}['id'] }}" class="btn btn-default btn-sm"
                                data-method="delete"
                                data-token="{{ csrf_token() }}"
-                               data-confirm="Esta seguro que desea eliminar a {{ABM-SINGULAR}} con nombre {{ ${{ABM-SINGULAR}}->nombre }}?">
+                               data-confirm="Está seguro que desea eliminar a {{ABM-SINGULAR}} con nombre {{ ${{ABM-SINGULAR}}->nombre }}?">
                                 Eliminar
                             </a>
                         </td>
