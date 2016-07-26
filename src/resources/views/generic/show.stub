@@ -11,7 +11,7 @@
 
         @if(isset(${{ABM-SINGULAR}}->archivo) && ${{ABM-SINGULAR}}->archivo != "")
             <div class="text-center margin-bottom">
-                <img src="/{{ ${{ABM-SINGULAR}}->archivo }}" height="250" />
+                <img src="/{{ ${{ABM-SINGULAR}}->archivo }}" style="max-height: 150px;" />
             </div>
         @endif
 
