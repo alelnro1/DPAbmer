@@ -60,7 +60,7 @@
 
             <!-- Telefono -->
             <div class="form-group{{ $errors->has('telefono') ? ' has-error' : '' }}">
-                <label class="col-md-4 control-label">Telefono</label>
+                <label class="col-md-4 control-label">Teléfono</label>
 
                 <div class="col-md-6">
                     <input type="text" class="form-control" name="telefono" value="{{ old('telefono') }}" placeholder="Escriba el teléfono">
